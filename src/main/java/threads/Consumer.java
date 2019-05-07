@@ -2,8 +2,11 @@ package threads;
 
 import collection.ThreadsQueue;
 import dto.BookingRequest;
+import org.apache.log4j.Logger;
 
 public class Consumer extends Thread {
+
+    private Logger logger = Logger.getLogger(Consumer.class);
 
     private ThreadsQueue<BookingRequest> queue;
 
@@ -13,10 +16,12 @@ public class Consumer extends Thread {
 
     public void run() {
         try {
+            while (queue.notEmpty()) {
                 BookingRequest bookingRequest = queue.removeFirst();
-                System.out.println("Booker " + this.getId() + " received:\n" + bookingRequest.toString());
+                logger.info("Consumer " + this.getName() + " received:  " + bookingRequest.toString());
                 Thread.sleep(5000);
-                System.out.println("Booker " + this.getId() + " processed:\n" + bookingRequest.toString());
+                logger.info("Consumer " + this.getName() + " processed: " + bookingRequest.toString());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

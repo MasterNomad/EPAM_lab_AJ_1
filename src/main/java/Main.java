@@ -3,23 +3,17 @@ import dto.BookingRequest;
 import threads.Consumer;
 import threads.Producer;
 
+import java.util.stream.Stream;
+
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        ThreadsQueue <BookingRequest> requestThreadsQueue = new ThreadsQueue<>(5);
+        ThreadsQueue<BookingRequest> requestThreadsQueue = new ThreadsQueue<>(5);
 
-        new Producer(requestThreadsQueue).start();
-        new Producer(requestThreadsQueue).start();
-        new Producer(requestThreadsQueue).start();
-
+        Stream.of(6).forEach(i -> new Producer(requestThreadsQueue).start());
         Thread.sleep(1000);
+        Stream.of(6).forEach(i -> new Consumer(requestThreadsQueue).start());
 
-        new Consumer(requestThreadsQueue).start();
-        new Consumer(requestThreadsQueue).start();
-        new Consumer(requestThreadsQueue).start();
-        new Consumer(requestThreadsQueue).start();
-        new Consumer(requestThreadsQueue).start();
-        new Consumer(requestThreadsQueue).start();
     }
 }

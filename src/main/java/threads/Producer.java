@@ -5,10 +5,6 @@ import dto.BookingRequest;
 import org.apache.log4j.Logger;
 import util.RequestGenerator;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Producer extends Thread {

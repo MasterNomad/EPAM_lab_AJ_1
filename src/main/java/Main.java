@@ -22,7 +22,6 @@ public class Main {
         Thread.sleep(1000);
         IntStream.range(0, 6).forEach(i -> new Consumer(requestThreadsQueue).start());
 
-        producerExecutor.shutdown();
-
+       producerExecutor.shutdown();
     }
 }

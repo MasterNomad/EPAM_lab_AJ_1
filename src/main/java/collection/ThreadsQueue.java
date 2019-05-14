@@ -32,5 +32,4 @@ public class ThreadsQueue<E> {
         notifyAll();
         return queue.removeFirst();
     }
-
 }

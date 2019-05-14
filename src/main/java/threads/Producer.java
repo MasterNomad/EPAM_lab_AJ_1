@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Producer extends Thread {
 
     private static AtomicInteger requestCounter = new AtomicInteger(0);
-    private Logger logger = Logger.getLogger(Producer.class);
+    private static Logger logger = Logger.getLogger(Producer.class);
 
     private ThreadsQueue<BookingRequest> queue;
 

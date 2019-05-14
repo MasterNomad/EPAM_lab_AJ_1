@@ -6,7 +6,9 @@ import org.apache.log4j.Logger;
 
 public class Consumer extends Thread {
 
-    private Logger logger = Logger.getLogger(Consumer.class);
+
+    private final static int SLEEP_TIME = 1000;
+    private static Logger logger = Logger.getLogger(Consumer.class);
 
     private ThreadsQueue<BookingRequest> queue;
 
@@ -19,7 +21,7 @@ public class Consumer extends Thread {
             while (queue.notEmpty()) {
                 BookingRequest bookingRequest = queue.removeFirst();
                 logger.info("Consumer " + this.getName() + " received:  " + bookingRequest.toString());
-                Thread.sleep(5000);
+                Thread.sleep(SLEEP_TIME);
                 logger.info("Consumer " + this.getName() + " processed: " + bookingRequest.toString());
             }
         } catch (Exception e) {
